@@ -74,7 +74,7 @@ Python_Laba_4/
 
 ## Установка и запуск
 ```
-git clone https://github.com/OikonoMike/Python_Laba_4
+https://github.com/OikonoMike/Python_Laba_4.git
 cd Python_Laba_4
 ```
 
