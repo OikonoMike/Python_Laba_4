@@ -8,7 +8,7 @@ class Library:
         self.books = BookCollection() # коллекция всех книг
         self.indexes = IndexDict() # коллекция индексов
 
-    def append_book(self, book: Book) -> None:
+    def add_book(self, book: Book) -> None:
         """Добавление новой книги в библиотеку"""
         self.books.append_book(book)
         self.indexes[book.isbn] = book

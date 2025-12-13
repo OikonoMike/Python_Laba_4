@@ -10,7 +10,7 @@ class Book:
         self.age_rating = age_rating
 
     def __repr__(self):
-        return f'Book("{self.title}", "{self.author}", {self.year}, "{self.genre}", "{self.isbn}")'
+        return f'Book("{self.title}", "{self.author}", {self.year}, "{self.genre}", "{self.isbn}", {self.age_rating})'
 
     def __eq__(self, other):
         if isinstance(other, Book):
@@ -27,24 +27,25 @@ class PhysicalBook(Book):
 
     def __init__(self, title: str, author: str, year: int, genre: str, isbn: str, copies: int = 1, age_rating: int = 0):
         super().__init__(title, author, year, genre, isbn, age_rating)
+        if copies < 0:
+            raise ValueError('Количество копий не может быть отрицательным')
         self.copies_total = copies
         self.copies_available = copies
 
     def is_available(self) -> bool:
-        """Проверить, есть ли свободные экземпляры"""
+        """Есть ли свободные книги в наличии"""
         return self.copies_available > 0
 
     def borrow(self) -> bool:
-        """Взять книгу (уменьшить доступное количество)"""
+        """Взять книгу => уменьшает доступное количество"""
         if self.is_available():
             self.copies_available -= 1
             return True
-        return False
+        raise ValueError('Книги нет в наличии')
 
     def return_copy(self) -> None:
-        """Вернуть книгу (увеличить доступное количество)"""
-        if self.copies_available < self.copies_total:
-            self.copies_available += 1
+        """Вернуть книгу => увеличивает доступное количество"""
+        self.copies_available += 1
 
 
 
